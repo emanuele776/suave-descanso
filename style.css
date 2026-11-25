@@ -1,0 +1,573 @@
+/* Variables y Configuración Base */
+:root {
+    --bg-dark: #0b0d12;
+    --bg-card: #141821;
+    --text-main: #f4f4f6;
+    --text-muted: #9ca3af;
+    --accent-gold: #d4af37;
+    --accent-gold-hover: #f3ce5b;
+    --whatsapp: #25d366;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave nativo sin JS */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Navbar con efecto Cristal (Glassmorphism) */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(11, 13, 18, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: var(--accent-gold);
+}
+
+.navbar nav {
+    display: flex;
+    gap: 32px;
+}
+
+.navbar nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.navbar nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: var(--text-main);
+}
+
+.navbar nav a:hover::after {
+    width: 100%;
+}
+
+.btn-nav {
+    padding: 10px 22px;
+    border: 1px solid var(--accent-gold);
+    color: var(--accent-gold);
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    transition: all 0.4s ease;
+}
+
+.btn-nav:hover {
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Hero Section con Efecto Parallax */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax puro en CSS */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(11, 13, 18, 0.5) 0%, rgba(11, 13, 18, 0.95) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 16px;
+    background: rgba(212, 175, 55, 0.15);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    color: var(--accent-gold);
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.hero h1 em {
+    font-style: italic;
+    color: var(--accent-gold);
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-inline: auto;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Botones con efecto de brillo deslizante */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+    transition: left 0.6s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-secondary {
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Indicador de Scroll animado */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 45px;
+    background: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-indicator .line::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-gold);
+    animation: scrollLine 2s infinite ease-in-out;
+}
+
+/* Animaciones de Entrada */
+.animate-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+/* Sección Tecnología */
+.features {
+    padding: 120px 0;
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.feature-card {
+    position: relative;
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    transition: transform 0.4s ease, border-color 0.4s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.feature-card .number {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    color: rgba(212, 175, 55, 0.25);
+    display: block;
+    margin-bottom: 15px;
+    transition: color 0.4s;
+}
+
+.feature-card:hover .number {
+    color: var(--accent-gold);
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Catálogo de Sommiers */
+.catalog {
+    padding: 100px 0 140px;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #10131c 100%);
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    align-items: center;
+}
+
+.product-card {
+    background: var(--bg-card);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.product-card.featured {
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.01);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+.product-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+.tag {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(11, 13, 18, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.tag.gold {
+    background: var(--accent-gold);
+    color: var(--bg-dark);
+    font-weight: 600;
+}
+
+.product-info {
+    padding: 32px;
+}
+
+.product-info h3 {
+    font-family: var(--font-serif);
+    font-size: 1.9rem;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.specs {
+    list-style: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 14px 0;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+    color: #d1d5db;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.btn-whatsapp-card {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-whatsapp-card:hover {
+    background: var(--whatsapp);
+    color: #fff;
+    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+/* Banner CTA con gradiente animado */
+.cta-banner {
+    padding: 100px 20px;
+    text-align: center;
+    background: linear-gradient(-45deg, #141821, #1f1b14, #0b0d12, #1a222d);
+    background-size: 400% 400%;
+    animation: gradientBG 12s ease infinite;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cta-content h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin-bottom: 16px;
+}
+
+.cta-content p {
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    max-width: 550px;
+    margin-inline: auto;
+}
+
+.btn-primary.big {
+    display: inline-block;
+    font-size: 1.05rem;
+    padding: 18px 44px;
+}
+
+/* Footer */
+footer {
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+footer .logo {
+    margin-bottom: 10px;
+}
+
+/* Botón Flotante de WhatsApp con Onda Expansiva */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 64px;
+    height: 64px;
+    background-color: var(--whatsapp);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 999;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-color: var(--whatsapp);
+    z-index: -1;
+    animation: pulseRing 2s infinite;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.whatsapp-icon {
+    width: 34px;
+    height: 34px;
+    fill: #ffffff;
+}
+
+/* Keyframes (Animaciones Puras) */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollLine {
+    0% { top: -100%; }
+    50% { top: 0%; }
+    100% { top: 100%; }
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    .navbar nav {
+        display: none;
+    }
+    .hero {
+        background-attachment: scroll;
+    }
+}
